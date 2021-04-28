@@ -37,15 +37,15 @@ app.get('/api', (req, res)=>{
 
 
 app.get("/api/:date", (req, res)=>{
-  
-  let date = req.params.date;
+  let date;
   let unix;
   let utc;
   let dateObject;
-
-  if (!date){
+  
+  if (!req.params || !req.params.date){
     dateObject = Date.now();
   }else{
+    date = req.params.date;
     let isnum = /^\d+$/.test(date);
     if (isnum){
       date = parseInt(date);
