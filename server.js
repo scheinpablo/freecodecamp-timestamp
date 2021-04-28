@@ -35,7 +35,6 @@ app.get("/api/:date", (req, res)=>{
 
   if (date == null || date == ''){
     dateObject = Date.now();
-    dateObject.setMinutes(dateObject.getMinutes()-3);
   }else{
     let isnum = /^\d+$/.test(date);
     if (isnum){
