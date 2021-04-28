@@ -28,8 +28,10 @@ app.get("/api/hello", function (req, res) {
 
 
 app.get('/api', (req, res)=>{
+  console.log('hola');
   unix = Date.now().valueOf();
   utc = Date.now().toUTCString();
+  console.log('hola2');
   let json = {unix: unix, utc: utc};
 
   res.json(json);
@@ -41,8 +43,9 @@ app.get("/api/:date", (req, res)=>{
   let unix;
   let utc;
   let dateObject;
-  
+  console.log('hola3');
   if (!req.params || !req.params.date){
+    console.log('noparams');
     dateObject = Date.now();
   }else{
     date = req.params.date;
@@ -52,9 +55,7 @@ app.get("/api/:date", (req, res)=>{
     }
     dateObject = new Date(date);
   }
-
-
-
+  console.log('hola4');
   if (!isValidDate(dateObject)) res.json({ error : "Invalid Date" });
   
   unix = dateObject.valueOf();
