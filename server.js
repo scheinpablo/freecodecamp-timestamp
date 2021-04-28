@@ -51,6 +51,11 @@ app.get("/api/:date", (req, res)=>{
   res.json(json);
 });
 
+app.get('/api', (req, res)=>{
+  let dateObject = new Date.now();
+  res.json({unix: dateObject.valueOf(), utc: dateObject.toUTCString()});
+});
+
 function isValidDate(d) {
   return d instanceof Date && !isNaN(d);
 }
