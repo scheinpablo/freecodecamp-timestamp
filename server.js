@@ -25,10 +25,30 @@ app.get("/api/hello", function (req, res) {
 });
 
 app.get("/api/:date", (req, res)=>{
+  
+  let date = req.params.date;
+  let unix;
+  let utc;
+  let dateObject;
 
-  res.json({hola: req.params.date});
+  if (date == null){
+    dateObject = Date.now();
+  }else{
+    dateObject = new Date(date);
+  }
 
+  if (!isValidDate(date)) res.json({ error : "Invalid Date" });
+  
+  unix = dateObject.valueOf();
+  utc = dateObject.toUTCString();
+  let json = {unix: unix, utc: utc};
+  
+  res.json(json);
 });
+
+function isValidDate(d) {
+  return d instanceof Date && !isNaN(d);
+}
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
