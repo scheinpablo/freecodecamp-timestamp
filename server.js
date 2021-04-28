@@ -33,7 +33,7 @@ app.get("/api/:date", (req, res)=>{
   let utc;
   let dateObject;
 
-  if (date == null){
+  if (date == null || date == ''){
     dateObject = Date.now();
   }else{
     let isnum = /^\d+$/.test(date);
