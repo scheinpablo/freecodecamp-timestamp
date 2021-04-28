@@ -36,8 +36,14 @@ app.get("/api/:date", (req, res)=>{
   if (date == null){
     dateObject = Date.now();
   }else{
+    let isnum = /^\d+$/.test(date);
+    if (isnum){
+      date = parseInt(date);
+    }
     dateObject = new Date(date);
   }
+
+
 
   if (!isValidDate(dateObject)) res.json({ error : "Invalid Date" });
   
