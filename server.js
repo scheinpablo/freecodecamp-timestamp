@@ -26,6 +26,16 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+
+app.get('/api', (req, res)=>{
+  unix = Date.now().valueOf();
+  utc = Date.now().toUTCString();
+  let json = {unix: unix, utc: utc};
+
+  res.json(json);
+});
+
+
 app.get("/api/:date", (req, res)=>{
   
   let date = req.params.date;
