@@ -19,6 +19,8 @@ app.get("/", function (req, res) {
 });
 
 
+
+
 // your first API endpoint... 
 app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
@@ -37,12 +39,12 @@ app.get("/api/:date", (req, res)=>{
     dateObject = new Date(date);
   }
 
-  if (!isValidDate(date)) res.json({ error : "Invalid Date" });
+  if (!isValidDate(dateObject)) res.json({ error : "Invalid Date" });
   
   unix = dateObject.valueOf();
   utc = dateObject.toUTCString();
   let json = {unix: unix, utc: utc};
-  
+
   res.json(json);
 });
 
