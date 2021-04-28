@@ -33,7 +33,7 @@ app.get("/api/:date", (req, res)=>{
   let utc;
   let dateObject;
   if (!req.params || !req.params.date){
-    dateObject = new Date.now();
+    dateObject = new Date();
   }else{
     date = req.params.date;
     let isnum = /^\d+$/.test(date);
@@ -52,7 +52,7 @@ app.get("/api/:date", (req, res)=>{
 });
 
 app.get('/api', (req, res)=>{
-  let dateObject = new Date.now();
+  let dateObject = new Date();
   res.json({unix: dateObject.valueOf(), utc: dateObject.toUTCString()});
 });
 
